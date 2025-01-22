@@ -1,0 +1,25 @@
+universe = vanilla
++SingularityImage = "osdf:///ospool/ap20/data/wew012/container0412.sif"
+
+executable = run_dgp20e.sh
+arguments = $(size) $(inde)
+
+
+transfer_input_files = MLfunctions_2.py, MLfunctions_docker.py,conquer_linear.py, dgp19/Scenario19_0.25_$(size)/data_$(inde)_0.25.csv, dgp20e_main_25_1_h01_$(size)_docker.py
+transfer_output_files = dgp20_result25_h01_ad_$(size)
+
+log = dgp20_logs/dgp20e_main_25_1_h01_$(size)_$(inde).log
+error = dgp20_errors/dgp20e_main_25_1_h01_$(size)_$(inde).err
+output = dgp20_outputs/dgp20e_main_25_1_h01_$(size)_$(inde).out
+
++JobDurationCategory = "Medium"
+
+requirements = GLIDEIN_ResourceName =!= "USC-CARC-Artemis-Backfill" && GLIDEIN_ResourceName =!= "GP-ARGO-mst-backfill"
+
+max_materialize = 100
+
+request_cpus = 2
+request_memory = 36GB
+request_disk = 5GB
+
+queue size, inde from combinations_e.txt
